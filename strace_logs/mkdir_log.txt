@@ -1,0 +1,66 @@
+execve("/bin/mkdir", ["mkdir", "temp"], [/* 22 vars */]) = 0
+brk(0)                                  = 0x8a05000
+mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f4b000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+open("/etc/ld.so.cache", O_RDONLY)      = 3
+fstat64(3, {st_mode=S_IFREG|0644, st_size=41374, ...}) = 0
+mmap2(NULL, 41374, PROT_READ, MAP_PRIVATE, 3, 0) = 0xb7f40000
+close(3)                                = 0
+open("/lib/libselinux.so.1", O_RDONLY)  = 3
+read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\20\245"..., 512) = 512
+fstat64(3, {st_mode=S_IFREG|0755, st_size=93512, ...}) = 0
+mmap2(0x4a467000, 93016, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x4a467000
+mmap2(0x4a47c000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x15) = 0x4a47c000
+close(3)                                = 0
+open("/lib/libc.so.6", O_RDONLY)        = 3
+read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0000_#J4"..., 512) = 512
+fstat64(3, {st_mode=S_IFREG|0755, st_size=1576952, ...}) = 0
+mmap2(0x4a220000, 1295780, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x4a220000
+mmap2(0x4a357000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x137) = 0x4a357000
+mmap2(0x4a35a000, 9636, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x4a35a000
+close(3)                                = 0
+open("/lib/libdl.so.2", O_RDONLY)       = 3
+read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0P\3725J"..., 512) = 512
+fstat64(3, {st_mode=S_IFREG|0755, st_size=16540, ...}) = 0
+mmap2(0x4a35f000, 12408, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x4a35f000
+mmap2(0x4a361000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1) = 0x4a361000
+close(3)                                = 0
+open("/lib/libsepol.so.1", O_RDONLY)    = 3
+read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\340.HJ"..., 512) = 512
+fstat64(3, {st_mode=S_IFREG|0755, st_size=242880, ...}) = 0
+mmap2(0x4a480000, 286624, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x4a480000
+mmap2(0x4a4bb000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x3a) = 0x4a4bb000
+mmap2(0x4a4bc000, 40864, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x4a4bc000
+close(3)                                = 0
+mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f3f000
+mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f3e000
+set_thread_area({entry_number:-1 -> 6, base_addr:0xb7f3e6d0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+mprotect(0x4a357000, 8192, PROT_READ)   = 0
+mprotect(0x4a361000, 4096, PROT_READ)   = 0
+mprotect(0x4a21c000, 4096, PROT_READ)   = 0
+munmap(0xb7f40000, 41374)               = 0
+access("/etc/selinux/", F_OK)           = 0
+brk(0)                                  = 0x8a05000
+brk(0x8a26000)                          = 0x8a26000
+open("/etc/selinux/config", O_RDONLY|O_LARGEFILE) = 3
+fstat64(3, {st_mode=S_IFREG|0644, st_size=447, ...}) = 0
+mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f4a000
+read(3, "# This file controls the state o"..., 4096) = 447
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+munmap(0xb7f4a000, 4096)                = 0
+open("/proc/mounts", O_RDONLY|O_LARGEFILE) = 3
+fstat64(3, {st_mode=S_IFREG|0444, st_size=0, ...}) = 0
+mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f4a000
+read(3, "rootfs / rootfs rw 0 0\n/dev/root"..., 4096) = 546
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+munmap(0xb7f4a000, 4096)                = 0
+open("/usr/lib/locale/locale-archive", O_RDONLY|O_LARGEFILE) = 3
+fstat64(3, {st_mode=S_IFREG|0644, st_size=55574128, ...}) = 0
+mmap2(NULL, 2097152, PROT_READ, MAP_PRIVATE, 3, 0) = 0xb7d3e000
+close(3)                                = 0
+mkdir("temp", 0777)                     = 0
+close(1)                                = 0
+exit_group(0)                           = ?
+Process 21111 detached
