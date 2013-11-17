@@ -1,4 +1,7 @@
 #include "chardev.h"
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kprobes.h>
 
 /* Globals localized to file (by use of static */
 static int Major;		/* assigned to device driver */
@@ -118,3 +121,45 @@ void cleanup_module(void)
 	if (ret < 0)
 		printk(KERN_ALERT "Error in unregister_chrdev: %d\n", ret);
 }
+
+/* Proxy routine having the same arguments as actual do_fork() routine */
+static ssize_t jsys_write(unsigned int fd, const char * buf, size_t count)
+{
+  printk(KERN_INFO "jprobe: sys_write fd is %d, buffer is %s, and size_t is %d",
+         fd, *buf, count);
+
+  /* Always end with a call to jprobe_return(). */
+  jprobe_return();
+  return 0;
+}
+
+static struct jprobe my_jprobe = {
+  .entry      = jsys_write,
+  .kp = {
+    .symbol_name  = "sys_write",
+  },
+};
+
+static int __init jprobe_init(void)
+{
+  int ret;
+
+  ret = register_jprobe(&my_jprobe);
+  if (ret < 0) {
+    printk(KERN_INFO "register_jprobe failed, returned %d\n", ret);
+    return -1;
+  }
+  printk(KERN_INFO "Planted jprobe at %p, handler addr %p\n",
+         my_jprobe.kp.addr, my_jprobe.entry);
+  return 0;
+}
+
+static void __exit jprobe_exit(void)
+{
+  unregister_jprobe(&my_jprobe);
+  printk(KERN_INFO "jprobe at %p unregistered\n", my_jprobe.kp.addr);
+}
+
+module_init(jprobe_init)
+module_exit(jprobe_exit)
+MODULE_LICENSE("GPL");

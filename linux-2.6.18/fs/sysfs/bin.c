@@ -79,6 +79,7 @@ flush_write(struct dentry *dentry, char *buffer, loff_t offset, size_t count)
 static ssize_t write(struct file * file, const char __user * userbuf,
 		     size_t count, loff_t * off)
 {
+	printk("The file is %s\n", int fileno(FILE file));
 	char *buffer = file->private_data;
 	struct dentry *dentry = file->f_dentry;
 	int size = dentry->d_inode->i_size;
