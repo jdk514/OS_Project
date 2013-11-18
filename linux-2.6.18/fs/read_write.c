@@ -363,6 +363,8 @@ asmlinkage ssize_t sys_write(unsigned int fd, const char __user * buf, size_t co
 	ssize_t ret = -EBADF;
 	int fput_needed;
 
+	printk("This is the files fd %d\n", fd);
+
 	file = fget_light(fd, &fput_needed);
 	if (file) {
 		loff_t pos = file_pos_read(file);

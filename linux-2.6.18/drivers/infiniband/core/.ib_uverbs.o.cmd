@@ -1,0 +1,1 @@
+cmd_drivers/infiniband/core/ib_uverbs.o := ld -m elf_i386 -m elf_i386  -r -o drivers/infiniband/core/ib_uverbs.o drivers/infiniband/core/uverbs_main.o drivers/infiniband/core/uverbs_cmd.o drivers/infiniband/core/uverbs_mem.o drivers/infiniband/core/uverbs_marshall.o

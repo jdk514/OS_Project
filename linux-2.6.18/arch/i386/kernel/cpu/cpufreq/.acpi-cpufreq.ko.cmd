@@ -1,0 +1,1 @@
+cmd_arch/i386/kernel/cpu/cpufreq/acpi-cpufreq.ko := ld -m elf_i386 -m elf_i386 -r -o arch/i386/kernel/cpu/cpufreq/acpi-cpufreq.ko arch/i386/kernel/cpu/cpufreq/acpi-cpufreq.o arch/i386/kernel/cpu/cpufreq/acpi-cpufreq.mod.o

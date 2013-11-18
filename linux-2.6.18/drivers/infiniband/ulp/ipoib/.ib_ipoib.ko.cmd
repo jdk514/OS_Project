@@ -1,0 +1,1 @@
+cmd_drivers/infiniband/ulp/ipoib/ib_ipoib.ko := ld -m elf_i386 -m elf_i386 -r -o drivers/infiniband/ulp/ipoib/ib_ipoib.ko drivers/infiniband/ulp/ipoib/ib_ipoib.o drivers/infiniband/ulp/ipoib/ib_ipoib.mod.o

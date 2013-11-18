@@ -1,0 +1,1 @@
+cmd_drivers/cpufreq/cpufreq_conservative.ko := ld -m elf_i386 -m elf_i386 -r -o drivers/cpufreq/cpufreq_conservative.ko drivers/cpufreq/cpufreq_conservative.o drivers/cpufreq/cpufreq_conservative.mod.o

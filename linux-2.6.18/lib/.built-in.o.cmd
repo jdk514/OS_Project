@@ -1,0 +1,1 @@
+cmd_lib/built-in.o :=  ld -m elf_i386 -m elf_i386  -r -o lib/built-in.o lib/sort.o lib/parser.o lib/halfmd4.o lib/iomap_copy.o lib/debug_locks.o lib/kernel_lock.o lib/plist.o lib/crc32.o lib/libcrc32c.o lib/iomap.o lib/zlib_inflate/built-in.o lib/textsearch.o lib/percpu_counter.o lib/audit.o

@@ -1,0 +1,1 @@
+cmd_drivers/md/raid6altivec2.c := perl /root/OS_Project/OS_Project/linux-2.6.18/drivers/md/unroll.pl 2 < drivers/md/raid6altivec.uc > drivers/md/raid6altivec2.c || ( rm -f drivers/md/raid6altivec2.c && exit 1 )

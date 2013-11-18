@@ -1,0 +1,1 @@
+cmd_drivers/video/savage/savagefb.o := ld -m elf_i386 -m elf_i386  -r -o drivers/video/savage/savagefb.o drivers/video/savage/savagefb_driver.o drivers/video/savage/savagefb-i2c.o drivers/video/savage/savagefb_accel.o

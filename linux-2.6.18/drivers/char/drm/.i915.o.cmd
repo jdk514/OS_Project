@@ -1,0 +1,1 @@
+cmd_drivers/char/drm/i915.o := ld -m elf_i386 -m elf_i386  -r -o drivers/char/drm/i915.o drivers/char/drm/i915_drv.o drivers/char/drm/i915_dma.o drivers/char/drm/i915_irq.o drivers/char/drm/i915_mem.o

@@ -1,0 +1,1 @@
+cmd_drivers/net/wireless/prism54/prism54.ko := ld -m elf_i386 -m elf_i386 -r -o drivers/net/wireless/prism54/prism54.ko drivers/net/wireless/prism54/prism54.o drivers/net/wireless/prism54/prism54.mod.o

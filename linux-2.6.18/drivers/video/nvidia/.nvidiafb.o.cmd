@@ -1,0 +1,1 @@
+cmd_drivers/video/nvidia/nvidiafb.o := ld -m elf_i386 -m elf_i386  -r -o drivers/video/nvidia/nvidiafb.o drivers/video/nvidia/nvidia.o drivers/video/nvidia/nv_hw.o drivers/video/nvidia/nv_setup.o drivers/video/nvidia/nv_accel.o drivers/video/nvidia/nv_i2c.o

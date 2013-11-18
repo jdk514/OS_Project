@@ -1,0 +1,1 @@
+cmd_drivers/usb/input/usbhid.o := ld -m elf_i386 -m elf_i386  -r -o drivers/usb/input/usbhid.o drivers/usb/input/hid-core.o drivers/usb/input/hiddev.o drivers/usb/input/hid-input.o drivers/usb/input/pid.o drivers/usb/input/hid-lgff.o drivers/usb/input/hid-tmff.o drivers/usb/input/hid-ff.o

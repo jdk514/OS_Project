@@ -1,0 +1,1 @@
+cmd_drivers/media/video/cx25840/cx25840.o := ld -m elf_i386 -m elf_i386  -r -o drivers/media/video/cx25840/cx25840.o drivers/media/video/cx25840/cx25840-core.o drivers/media/video/cx25840/cx25840-audio.o drivers/media/video/cx25840/cx25840-firmware.o drivers/media/video/cx25840/cx25840-vbi.o

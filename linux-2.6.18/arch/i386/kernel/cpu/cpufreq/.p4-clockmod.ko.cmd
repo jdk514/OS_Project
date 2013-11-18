@@ -1,0 +1,1 @@
+cmd_arch/i386/kernel/cpu/cpufreq/p4-clockmod.ko := ld -m elf_i386 -m elf_i386 -r -o arch/i386/kernel/cpu/cpufreq/p4-clockmod.ko arch/i386/kernel/cpu/cpufreq/p4-clockmod.o arch/i386/kernel/cpu/cpufreq/p4-clockmod.mod.o

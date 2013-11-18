@@ -1,0 +1,125 @@
+#include <linux/module.h>
+#include <linux/vermagic.h>
+#include <linux/compiler.h>
+
+MODULE_INFO(vermagic, VERMAGIC_STRING);
+
+struct module __this_module
+__attribute__((section(".gnu.linkonce.this_module"))) = {
+ .name = KBUILD_MODNAME,
+ .init = init_module,
+#ifdef CONFIG_MODULE_UNLOAD
+ .exit = cleanup_module,
+#endif
+};
+
+static const struct modversion_info ____versions[]
+__attribute_used__
+__attribute__((section("__versions"))) = {
+	{ 0xb499ef18, "struct_module" },
+	{ 0x8b7d8caf, "dccp_statistics" },
+	{ 0xc998d641, "icmp_err_convert" },
+	{ 0x286337eb, "dccp_init_sock" },
+	{ 0xcde174cc, "dccp_set_state" },
+	{ 0x5e3ee704, "ip_getsockopt" },
+	{ 0x3d7c39ea, "_read_lock" },
+	{ 0x8fb40600, "dccp_hashinfo" },
+	{ 0x12349733, "ip_setsockopt" },
+	{ 0x22b77110, "inet_csk_ctl_sock_create" },
+	{ 0x94b67083, "dccp_sendmsg" },
+	{ 0xa4e9e5c5, "ip_build_and_send_pkt" },
+	{ 0x906fc018, "dccp_destroy_sock" },
+	{ 0x946a6b65, "dccp_make_response" },
+	{ 0x1ddeb643, "dccp_send_sync" },
+	{ 0x93eaee67, "dccp_rcv_established" },
+	{ 0x1bcd461f, "_spin_lock" },
+	{ 0x4dc670d, "dccp_create_openreq_child" },
+	{ 0x26019d79, "dccp_check_req" },
+	{ 0xbe826b08, "inet_sendmsg" },
+	{ 0xb96dc645, "dccp_hash" },
+	{ 0x196919d0, "dccp_recvmsg" },
+	{ 0xc968c8a9, "inet_del_protocol" },
+	{ 0x9155c375, "inet_sk_rebuild_header" },
+	{ 0x7d11c268, "jiffies" },
+	{ 0x76c1d2ae, "dccp_ioctl" },
+	{ 0x8a5755b2, "dccp_setsockopt" },
+	{ 0x16b0cf75, "sock_common_recvmsg" },
+	{ 0x27dc8ba7, "sock_no_sendpage" },
+	{ 0xded1ee1, "net_statistics" },
+	{ 0xa132fcfe, "dccp_child_process" },
+	{ 0xc4be936d, "__pskb_pull_tail" },
+	{ 0x29c9c48, "sock_no_mmap" },
+	{ 0x2bc95bd4, "memset" },
+	{ 0x7900058d, "sock_no_socketpair" },
+	{ 0xc1be8b0a, "dccp_parse_options" },
+	{ 0xf5629d74, "dccp_getsockopt" },
+	{ 0x1b7d4074, "printk" },
+	{ 0x168001d3, "inet_csk_route_req" },
+	{ 0xa84745fa, "inet_csk_search_req" },
+	{ 0xad3ce0db, "inet_csk_delete_keepalive_timer" },
+	{ 0xb689e344, "kmem_cache_free" },
+	{ 0x17cd4639, "inet_hash_connect" },
+	{ 0x12d35b8c, "dccp_close" },
+	{ 0x769f4612, "sk_free" },
+	{ 0x1506a81b, "inet_shutdown" },
+	{ 0x468ed483, "inet_add_protocol" },
+	{ 0x8cb3498f, "dccp_orphan_count" },
+	{ 0x8f2f4b8f, "dccp_sync_mss" },
+	{ 0x3a2f3de4, "inet_accept" },
+	{ 0xe591efea, "xfrm_policy_list" },
+	{ 0xcca637d8, "dccp_feat_default_sequence_window" },
+	{ 0xcb19f6d6, "ip_statistics" },
+	{ 0x88745348, "secure_dccp_sequence_number" },
+	{ 0xc1eaf42a, "inet_ioctl" },
+	{ 0x52818790, "inet_csk_get_port" },
+	{ 0x65779a84, "dccp_death_row" },
+	{ 0x325f8813, "dccp_poll" },
+	{ 0x5dab0ad2, "icmp_statistics" },
+	{ 0x3ff62317, "local_bh_disable" },
+	{ 0x189f12c0, "proto_register" },
+	{ 0x4b05104f, "_write_lock" },
+	{ 0x13a3f36c, "dccp_disconnect" },
+	{ 0x19070091, "kmem_cache_alloc" },
+	{ 0x5c615022, "__sk_dst_check" },
+	{ 0x8ce543de, "inet_release" },
+	{ 0x52f757ea, "dccp_done" },
+	{ 0x548de514, "__alloc_skb" },
+	{ 0xedeb323e, "__ip_route_output_key" },
+	{ 0xc06e26f7, "kfree_skb" },
+	{ 0x6495dd71, "proto_unregister" },
+	{ 0x5e02c1ef, "inet_stream_connect" },
+	{ 0x7ea2ae0e, "inet_getname" },
+	{ 0x6b2dc060, "dump_stack" },
+	{ 0x799aca4, "local_bh_enable" },
+	{ 0xe3038592, "skb_under_panic" },
+	{ 0xdcef6636, "wake_up_process" },
+	{ 0x10969fd8, "inet_csk_bind_conflict" },
+	{ 0x1f6d6e11, "sk_receive_skb" },
+	{ 0x44501877, "inet_csk_reqsk_queue_hash_add" },
+	{ 0xe2e9c0a2, "ip_route_output_flow" },
+	{ 0xf3501da1, "sock_common_setsockopt" },
+	{ 0xb0d416e7, "__xfrm_policy_check" },
+	{ 0xb71f4413, "inet_register_protosw" },
+	{ 0x37a0cba, "kfree" },
+	{ 0x7c9b8eb6, "dccp_unhash" },
+	{ 0x47ded729, "inet_dccp_listen" },
+	{ 0x8033ed9, "inet_bind" },
+	{ 0x533e27a, "sock_common_getsockopt" },
+	{ 0x498be2ee, "inet_csk_accept" },
+	{ 0xb5be7dd5, "__inet_lookup_listener" },
+	{ 0x151ea5e3, "dccp_rcv_state_process" },
+	{ 0x9a3de8f8, "csum_partial" },
+	{ 0x3b56c02e, "dccp_connect" },
+	{ 0x6715ef5f, "dccp_shutdown" },
+	{ 0x38456cd3, "ip_queue_xmit" },
+	{ 0x3f629be1, "inet_unregister_protosw" },
+	{ 0x5cb4606f, "inet_csk_addr2sockaddr" },
+};
+
+static const char __module_depends[]
+__attribute_used__
+__attribute__((section(".modinfo"))) =
+"depends=dccp";
+
+
+MODULE_INFO(srcversion, "7C064C2C81A5FAE9D1594C1");

@@ -1,0 +1,128 @@
+#include <linux/module.h>
+#include <linux/vermagic.h>
+#include <linux/compiler.h>
+
+MODULE_INFO(vermagic, VERMAGIC_STRING);
+
+struct module __this_module
+__attribute__((section(".gnu.linkonce.this_module"))) = {
+ .name = KBUILD_MODNAME,
+ .init = init_module,
+#ifdef CONFIG_MODULE_UNLOAD
+ .exit = cleanup_module,
+#endif
+};
+
+static const struct modversion_info ____versions[]
+__attribute_used__
+__attribute__((section("__versions"))) = {
+	{ 0xb499ef18, "struct_module" },
+	{ 0x81279ce0, "register_netdevice" },
+	{ 0xec7bc0d, "__mod_timer" },
+	{ 0x61bed476, "up_read" },
+	{ 0x7930fe23, "unregister_netdevice" },
+	{ 0x89b301d4, "param_get_int" },
+	{ 0xcc4c11a9, "_write_unlock_bh" },
+	{ 0x3d7c39ea, "_read_lock" },
+	{ 0x4b27b343, "ip_route_output_key" },
+	{ 0x3e45e9ff, "register_inetaddr_notifier" },
+	{ 0xebb99830, "seq_open" },
+	{ 0x1b6314fd, "in_aton" },
+	{ 0xab978df6, "malloc_sizes" },
+	{ 0xdd7b7024, "seq_puts" },
+	{ 0xc7a4fbed, "rtnl_lock" },
+	{ 0xc767785d, "netif_carrier_on" },
+	{ 0xf93cb7da, "skb_clone" },
+	{ 0xbf8e93eb, "dev_get_by_name" },
+	{ 0xc78194a4, "skb_copy" },
+	{ 0x3140fca, "ethtool_op_get_sg" },
+	{ 0x1bcd461f, "_spin_lock" },
+	{ 0x806d5133, "param_array_get" },
+	{ 0x669e2d2f, "seq_printf" },
+	{ 0x63ecad53, "register_netdevice_notifier" },
+	{ 0xa99d5102, "netif_carrier_off" },
+	{ 0xa7ce993b, "remove_proc_entry" },
+	{ 0x1ab0f38, "dev_base_lock" },
+	{ 0x51d3534a, "dev_set_allmulti" },
+	{ 0x4e830a3e, "strnicmp" },
+	{ 0xcf81566a, "alloc_netdev" },
+	{ 0x98bd6f46, "param_set_int" },
+	{ 0x1d26aa98, "sprintf" },
+	{ 0xddabf283, "skb_realloc_headroom" },
+	{ 0x89cef6fb, "param_array_set" },
+	{ 0xe6eee95b, "seq_read" },
+	{ 0x91ed7e93, "sysfs_remove_group" },
+	{ 0x7d11c268, "jiffies" },
+	{ 0xfe769456, "unregister_netdevice_notifier" },
+	{ 0x1985af2a, "down_read" },
+	{ 0xe714c8c4, "dev_mc_add" },
+	{ 0xaa136450, "param_get_charp" },
+	{ 0xc659d5a, "del_timer_sync" },
+	{ 0x46828317, "dev_set_mac_address" },
+	{ 0xc12e8a55, "proc_mkdir" },
+	{ 0x21968b7f, "_read_lock_bh" },
+	{ 0xe6be1c28, "proc_net" },
+	{ 0x8d3894f2, "_ctype" },
+	{ 0x93ba42f1, "_write_lock_bh" },
+	{ 0x392b3d18, "arp_create" },
+	{ 0x1b7d4074, "printk" },
+	{ 0x859204af, "sscanf" },
+	{ 0x692d1a65, "sysfs_create_group" },
+	{ 0x5152e605, "memcmp" },
+	{ 0x65414e67, "dev_valid_name" },
+	{ 0xaaab5c7a, "free_netdev" },
+	{ 0x2da418b5, "copy_to_user" },
+	{ 0xf86e951e, "dev_close" },
+	{ 0x789ddd86, "class_remove_file" },
+	{ 0xf46f821, "dev_remove_pack" },
+	{ 0xf3b39202, "mod_timer" },
+	{ 0x4149cb93, "sysfs_remove_link" },
+	{ 0x369b4451, "class_create_file" },
+	{ 0xde0c05c3, "up_write" },
+	{ 0xbca92367, "down_write" },
+	{ 0x48a40a1f, "dev_mc_delete" },
+	{ 0xe96df29f, "dev_open" },
+	{ 0xb0c7d8ca, "ethtool_op_get_ufo" },
+	{ 0x2ef69a16, "sysfs_create_link" },
+	{ 0xfc108d60, "skb_over_panic" },
+	{ 0x7dceceac, "capable" },
+	{ 0x4b05104f, "_write_lock" },
+	{ 0x19070091, "kmem_cache_alloc" },
+	{ 0x548de514, "__alloc_skb" },
+	{ 0x760b437a, "unregister_inetaddr_notifier" },
+	{ 0xc06e26f7, "kfree_skb" },
+	{ 0x6b2dc060, "dump_stack" },
+	{ 0xe3038592, "skb_under_panic" },
+	{ 0x9df8d768, "arp_xmit" },
+	{ 0x932e68d6, "create_proc_entry" },
+	{ 0x8bf46c54, "_read_unlock_bh" },
+	{ 0xed6d6a06, "ether_setup" },
+	{ 0xd4db4409, "netdev_set_master" },
+	{ 0xd0b91f9b, "init_timer" },
+	{ 0x2cd7da6c, "param_set_charp" },
+	{ 0xf6ebc03b, "net_ratelimit" },
+	{ 0xf9b907c1, "seq_lseek" },
+	{ 0x475c5596, "dev_set_promiscuity" },
+	{ 0x37a0cba, "kfree" },
+	{ 0x2e60bace, "memcpy" },
+	{ 0xf7712dbb, "ethtool_op_get_tx_csum" },
+	{ 0xb742fd7, "simple_strtol" },
+	{ 0xa5f201bb, "ethtool_op_get_tso" },
+	{ 0x25da070, "snprintf" },
+	{ 0x3047c858, "dev_add_pack" },
+	{ 0x5a1d6f47, "seq_release" },
+	{ 0x8235805b, "memmove" },
+	{ 0x7fce77eb, "dev_queue_xmit" },
+	{ 0xf2a644fb, "copy_from_user" },
+	{ 0xf1f0ab07, "__init_rwsem" },
+	{ 0x6e720ff2, "rtnl_unlock" },
+	{ 0x1c997241, "dev_set_mtu" },
+};
+
+static const char __module_depends[]
+__attribute_used__
+__attribute__((section(".modinfo"))) =
+"depends=";
+
+
+MODULE_INFO(srcversion, "F8C5425F67439FD5D6EF4EA");

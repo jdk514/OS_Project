@@ -1,0 +1,127 @@
+#include <linux/module.h>
+#include <linux/vermagic.h>
+#include <linux/compiler.h>
+
+MODULE_INFO(vermagic, VERMAGIC_STRING);
+
+struct module __this_module
+__attribute__((section(".gnu.linkonce.this_module"))) = {
+ .name = KBUILD_MODNAME,
+ .init = init_module,
+#ifdef CONFIG_MODULE_UNLOAD
+ .exit = cleanup_module,
+#endif
+};
+
+static const struct modversion_info ____versions[]
+__attribute_used__
+__attribute__((section("__versions"))) = {
+	{ 0xb499ef18, "struct_module" },
+	{ 0x8aceb563, "cdev_alloc" },
+	{ 0xdc3debb9, "cdev_del" },
+	{ 0x12da5bb2, "__kmalloc" },
+	{ 0xcff53400, "kref_put" },
+	{ 0x61bed476, "up_read" },
+	{ 0xa7384e97, "ib_attach_mcast" },
+	{ 0xe2e90e7d, "mem_map" },
+	{ 0xbc830838, "ib_dealloc_pd" },
+	{ 0xd8e484f0, "register_chrdev_region" },
+	{ 0xc8b57c27, "autoremove_wake_function" },
+	{ 0x27514859, "class_device_destroy" },
+	{ 0xd10fc04d, "class_device_create" },
+	{ 0xab978df6, "malloc_sizes" },
+	{ 0xea56b99a, "get_sb_pseudo" },
+	{ 0xf23acb1e, "set_page_dirty_lock" },
+	{ 0xde42fc92, "ib_destroy_qp" },
+	{ 0x1bcd461f, "_spin_lock" },
+	{ 0xf6a5a6c8, "schedule_work" },
+	{ 0xa90c44c8, "ib_modify_srq" },
+	{ 0x7d4a1f83, "kobject_set_name" },
+	{ 0xdf2126f8, "mutex_unlock" },
+	{ 0x38a7dd83, "mmput" },
+	{ 0x7485e15e, "unregister_chrdev_region" },
+	{ 0x87cddf59, "_spin_lock_irqsave" },
+	{ 0x1d26aa98, "sprintf" },
+	{ 0x1ff564ab, "ib_destroy_ah" },
+	{ 0xc388a12c, "ib_modify_qp" },
+	{ 0x1985af2a, "down_read" },
+	{ 0xa34eb072, "wait_for_completion" },
+	{ 0x656a4576, "kill_litter_super" },
+	{ 0x9dbf1158, "idr_destroy" },
+	{ 0x99bfbe39, "get_unused_fd" },
+	{ 0x3dc8af4d, "ib_query_device" },
+	{ 0x86cb9d9f, "__mutex_init" },
+	{ 0x1b7d4074, "printk" },
+	{ 0x45c077f2, "_spin_lock_irq" },
+	{ 0x5152e605, "memcmp" },
+	{ 0xf0aed7d9, "get_task_mm" },
+	{ 0x1974d9f7, "ib_destroy_srq" },
+	{ 0x93637a5a, "ib_get_client_data" },
+	{ 0x2da418b5, "copy_to_user" },
+	{ 0x54ee23d3, "fasync_helper" },
+	{ 0xf5119cd6, "ib_query_port" },
+	{ 0x6180e3ac, "class_device_create_file" },
+	{ 0xd9f7b1a3, "mutex_lock" },
+	{ 0xc83decb4, "class_create" },
+	{ 0xa20fdde, "_spin_unlock_irqrestore" },
+	{ 0x369b4451, "class_create_file" },
+	{ 0xde0c05c3, "up_write" },
+	{ 0xbca92367, "down_write" },
+	{ 0xf51976d4, "fput" },
+	{ 0x515ff74e, "ib_set_client_data" },
+	{ 0xd312e32d, "ib_destroy_cq" },
+	{ 0xa7409aaf, "idr_remove" },
+	{ 0x229fb2ef, "cdev_add" },
+	{ 0x52a7207f, "idr_pre_get" },
+	{ 0xd7ef5825, "ib_register_client" },
+	{ 0x92902a6a, "kern_mount" },
+	{ 0xc0c3f04d, "ib_create_ah" },
+	{ 0x7dceceac, "capable" },
+	{ 0xf027191, "ib_unregister_event_handler" },
+	{ 0x19070091, "kmem_cache_alloc" },
+	{ 0xe7bd2667, "ib_detach_mcast" },
+	{ 0x22ac2c91, "ib_register_event_handler" },
+	{ 0x369bed0b, "mntput_no_expire" },
+	{ 0x107d6ba3, "__get_free_pages" },
+	{ 0xddbcef4b, "get_user_pages" },
+	{ 0x4292364c, "schedule" },
+	{ 0x6b2dc060, "dump_stack" },
+	{ 0xdcef6636, "wake_up_process" },
+	{ 0x23eb25e, "put_unused_fd" },
+	{ 0x4e370dd9, "ib_query_qp" },
+	{ 0x3d8dda9b, "ib_dereg_mr" },
+	{ 0x118bc8c2, "register_filesystem" },
+	{ 0x19cacd0, "init_waitqueue_head" },
+	{ 0xd0b91f9b, "init_timer" },
+	{ 0x9941ccb8, "free_pages" },
+	{ 0x59968f3c, "__wake_up" },
+	{ 0xb85ab97a, "kmem_cache_zalloc" },
+	{ 0x3ae831b6, "kref_init" },
+	{ 0x37a0cba, "kfree" },
+	{ 0x801678, "flush_scheduled_work" },
+	{ 0xb9f96ad0, "fd_install" },
+	{ 0xc8f02aeb, "prepare_to_wait" },
+	{ 0x8a1203a9, "kref_get" },
+	{ 0xc2fda3ae, "ib_query_srq" },
+	{ 0x61dc8e70, "fget" },
+	{ 0x946be58e, "put_page" },
+	{ 0x93538172, "class_destroy" },
+	{ 0x14126ae8, "kill_fasync" },
+	{ 0x865edc9b, "finish_wait" },
+	{ 0x933eb75d, "unregister_filesystem" },
+	{ 0x7e0221e4, "complete" },
+	{ 0xf6a98ae7, "idr_find" },
+	{ 0x7d9a0f2a, "get_empty_filp" },
+	{ 0x2d29e50a, "idr_get_new" },
+	{ 0xf2a644fb, "copy_from_user" },
+	{ 0x148e6ca, "ib_unregister_client" },
+	{ 0xf1f0ab07, "__init_rwsem" },
+};
+
+static const char __module_depends[]
+__attribute_used__
+__attribute__((section(".modinfo"))) =
+"depends=ib_core";
+
+
+MODULE_INFO(srcversion, "082CF9E1260CEAC6E1218E6");

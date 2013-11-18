@@ -1,0 +1,1 @@
+cmd_drivers/media/video/usbvideo/quickcam_messenger.ko := ld -m elf_i386 -m elf_i386 -r -o drivers/media/video/usbvideo/quickcam_messenger.ko drivers/media/video/usbvideo/quickcam_messenger.o drivers/media/video/usbvideo/quickcam_messenger.mod.o
