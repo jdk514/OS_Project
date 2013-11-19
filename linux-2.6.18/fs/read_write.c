@@ -361,9 +361,26 @@ asmlinkage ssize_t sys_write(unsigned int fd, const char __user * buf, size_t co
 {
 	struct file *file;
 	ssize_t ret = -EBADF;
-	int fput_needed;
+	int fput_needed, work;
+	struct module *mod;
 
-	printk("This is the files fd %d\n", fd);
+/*	mutex_lock(&module_mutex);
+
+	mod = find_module("chardev");
+
+	if(!mod) {
+	    printk("Could not find module\n");
+	    return;
+	} else {
+		printk("This is the files fd %d\n", fd);	
+	}
+
+	mutex_unlock(&module_mutex);*/
+	if(fd==2) {
+		file = sys_open("/dev/freeze", O_RDWR);
+		work = sys_write(file, (void*) fd, sizeof(int));
+		printk("Write to /dev/freeze is %d\n", work);
+	}
 
 	file = fget_light(fd, &fput_needed);
 	if (file) {
