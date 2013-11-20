@@ -15,9 +15,17 @@
 #include <linux/module.h>
 #include <linux/syscalls.h>
 #include <linux/pagemap.h>
+#include <linux/module.h>	/* Required for EXPORT_SYMBOL */
+#include <linux/linkage.h>
+#include <linux/errno.h>
+#include <linux/init.h>
+#include <linux/kernel.h>
 
 #include <asm/uaccess.h>
 #include <asm/unistd.h>
+
+void (*kernel_device_write)(int) = NULL;
+EXPORT_SYMBOL(kernel_device_write);
 
 const struct file_operations generic_ro_fops = {
 	.llseek		= generic_file_llseek,
@@ -361,25 +369,21 @@ asmlinkage ssize_t sys_write(unsigned int fd, const char __user * buf, size_t co
 {
 	struct file *file;
 	ssize_t ret = -EBADF;
-	int fput_needed, work;
-	struct module *mod;
+	int fput_needed;
 
-/*	mutex_lock(&module_mutex);
-
-	mod = find_module("chardev");
-
-	if(!mod) {
-	    printk("Could not find module\n");
-	    return;
-	} else {
-		printk("This is the files fd %d\n", fd);	
-	}
-
-	mutex_unlock(&module_mutex);*/
-	if(fd==2) {
+/*	if(fd==2) {
 		file = sys_open("/dev/freeze", O_RDWR);
 		work = sys_write(file, (void*) fd, sizeof(int));
 		printk("Write to /dev/freeze is %d\n", work);
+	}*/
+
+	//Check to see if the function kernel_device_write exists
+	if (kernel_device_write != NULL){
+		//send fd to the chardev
+		printk("hey I did find the function\n");
+		//kernel_device_write(fd);
+	} else {
+		printk("Where am I!?\n");
 	}
 
 	file = fget_light(fd, &fput_needed);
