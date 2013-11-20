@@ -1,1 +1,0 @@
-cmd_net/ipv4/netfilter/ip_conntrack_proto_sctp.ko := ld -m elf_i386 -m elf_i386 -r -o net/ipv4/netfilter/ip_conntrack_proto_sctp.ko net/ipv4/netfilter/ip_conntrack_proto_sctp.o net/ipv4/netfilter/ip_conntrack_proto_sctp.mod.o

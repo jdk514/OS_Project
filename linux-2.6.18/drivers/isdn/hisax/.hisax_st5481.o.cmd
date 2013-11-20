@@ -1,1 +1,0 @@
-cmd_drivers/isdn/hisax/hisax_st5481.o := ld -m elf_i386 -m elf_i386  -r -o drivers/isdn/hisax/hisax_st5481.o drivers/isdn/hisax/st5481_init.o drivers/isdn/hisax/st5481_usb.o drivers/isdn/hisax/st5481_d.o drivers/isdn/hisax/st5481_b.o

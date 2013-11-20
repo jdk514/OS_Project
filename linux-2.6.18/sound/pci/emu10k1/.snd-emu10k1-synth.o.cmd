@@ -1,1 +1,0 @@
-cmd_sound/pci/emu10k1/snd-emu10k1-synth.o := ld -m elf_i386 -m elf_i386  -r -o sound/pci/emu10k1/snd-emu10k1-synth.o sound/pci/emu10k1/emu10k1_synth.o sound/pci/emu10k1/emu10k1_callback.o sound/pci/emu10k1/emu10k1_patch.o

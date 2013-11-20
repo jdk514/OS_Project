@@ -1,1 +1,0 @@
-cmd_drivers/video/kyro/kyrofb.o := ld -m elf_i386 -m elf_i386  -r -o drivers/video/kyro/kyrofb.o drivers/video/kyro/STG4000Ramdac.o drivers/video/kyro/STG4000VTG.o drivers/video/kyro/STG4000OverlayDevice.o drivers/video/kyro/STG4000InitDevice.o drivers/video/kyro/fbdev.o

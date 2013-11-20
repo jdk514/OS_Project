@@ -1,1 +1,0 @@
-cmd_drivers/net/wireless/bcm43xx/bcm43xx.ko := ld -m elf_i386 -m elf_i386 -r -o drivers/net/wireless/bcm43xx/bcm43xx.ko drivers/net/wireless/bcm43xx/bcm43xx.o drivers/net/wireless/bcm43xx/bcm43xx.mod.o

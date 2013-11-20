@@ -1,1 +1,0 @@
-cmd_net/ieee80211/softmac/ieee80211softmac.ko := ld -m elf_i386 -m elf_i386 -r -o net/ieee80211/softmac/ieee80211softmac.ko net/ieee80211/softmac/ieee80211softmac.o net/ieee80211/softmac/ieee80211softmac.mod.o

@@ -1,1 +1,0 @@
-cmd_drivers/pci/hotplug/ibmphp.o := ld -m elf_i386 -m elf_i386  -r -o drivers/pci/hotplug/ibmphp.o drivers/pci/hotplug/ibmphp_core.o drivers/pci/hotplug/ibmphp_ebda.o drivers/pci/hotplug/ibmphp_pci.o drivers/pci/hotplug/ibmphp_res.o drivers/pci/hotplug/ibmphp_hpc.o

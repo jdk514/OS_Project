@@ -1,1 +1,0 @@
-cmd_crypto/built-in.o :=  ld -m elf_i386 -m elf_i386  -r -o crypto/built-in.o crypto/api.o crypto/scatterwalk.o crypto/cipher.o crypto/digest.o crypto/compress.o crypto/proc.o crypto/hmac.o crypto/sha1.o crypto/crc32c.o

@@ -1,1 +1,0 @@
-cmd_drivers/i2c/busses/i2c-parport-light.ko := ld -m elf_i386 -m elf_i386 -r -o drivers/i2c/busses/i2c-parport-light.ko drivers/i2c/busses/i2c-parport-light.o drivers/i2c/busses/i2c-parport-light.mod.o

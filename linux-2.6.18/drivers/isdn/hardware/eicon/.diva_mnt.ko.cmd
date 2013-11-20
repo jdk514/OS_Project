@@ -1,1 +1,0 @@
-cmd_drivers/isdn/hardware/eicon/diva_mnt.ko := ld -m elf_i386 -m elf_i386 -r -o drivers/isdn/hardware/eicon/diva_mnt.ko drivers/isdn/hardware/eicon/diva_mnt.o drivers/isdn/hardware/eicon/diva_mnt.mod.o

@@ -1,1 +1,0 @@
-cmd_drivers/pci/hotplug/cpqphp.o := ld -m elf_i386 -m elf_i386  -r -o drivers/pci/hotplug/cpqphp.o drivers/pci/hotplug/cpqphp_core.o drivers/pci/hotplug/cpqphp_ctrl.o drivers/pci/hotplug/cpqphp_sysfs.o drivers/pci/hotplug/cpqphp_pci.o

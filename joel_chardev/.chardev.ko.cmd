@@ -1,1 +1,0 @@
-cmd_/root/Desktop/OS/git/web_server/homework_6/osqueue/chardev.ko := ld -m elf_i386 -m elf_i386 -r -o /root/Desktop/OS/git/web_server/homework_6/osqueue/chardev.ko /root/Desktop/OS/git/web_server/homework_6/osqueue/chardev.o /root/Desktop/OS/git/web_server/homework_6/osqueue/chardev.mod.o

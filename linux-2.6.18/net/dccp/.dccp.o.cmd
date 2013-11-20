@@ -1,1 +1,0 @@
-cmd_net/dccp/dccp.o := ld -m elf_i386 -m elf_i386  -r -o net/dccp/dccp.o net/dccp/ccid.o net/dccp/feat.o net/dccp/input.o net/dccp/minisocks.o net/dccp/options.o net/dccp/output.o net/dccp/proto.o net/dccp/timer.o net/dccp/ackvec.o net/dccp/sysctl.o

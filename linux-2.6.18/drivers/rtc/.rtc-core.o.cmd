@@ -1,1 +1,0 @@
-cmd_drivers/rtc/rtc-core.o := ld -m elf_i386 -m elf_i386  -r -o drivers/rtc/rtc-core.o drivers/rtc/class.o drivers/rtc/interface.o

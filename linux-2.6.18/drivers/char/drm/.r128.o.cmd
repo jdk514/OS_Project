@@ -1,1 +1,0 @@
-cmd_drivers/char/drm/r128.o := ld -m elf_i386 -m elf_i386  -r -o drivers/char/drm/r128.o drivers/char/drm/r128_drv.o drivers/char/drm/r128_cce.o drivers/char/drm/r128_state.o drivers/char/drm/r128_irq.o

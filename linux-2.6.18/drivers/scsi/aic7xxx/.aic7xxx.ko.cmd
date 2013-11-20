@@ -1,1 +1,0 @@
-cmd_drivers/scsi/aic7xxx/aic7xxx.ko := ld -m elf_i386 -m elf_i386 -r -o drivers/scsi/aic7xxx/aic7xxx.ko drivers/scsi/aic7xxx/aic7xxx.o drivers/scsi/aic7xxx/aic7xxx.mod.o

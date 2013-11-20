@@ -1,1 +1,0 @@
-cmd_security/selinux/selinux.o := ld -m elf_i386 -m elf_i386  -r -o security/selinux/selinux.o security/selinux/avc.o security/selinux/hooks.o security/selinux/selinuxfs.o security/selinux/netlink.o security/selinux/nlmsgtab.o security/selinux/netif.o security/selinux/exports.o security/selinux/xfrm.o

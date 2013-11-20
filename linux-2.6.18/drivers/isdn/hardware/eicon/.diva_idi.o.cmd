@@ -1,1 +1,0 @@
-cmd_drivers/isdn/hardware/eicon/diva_idi.o := ld -m elf_i386 -m elf_i386  -r -o drivers/isdn/hardware/eicon/diva_idi.o drivers/isdn/hardware/eicon/divasi.o drivers/isdn/hardware/eicon/idifunc.o drivers/isdn/hardware/eicon/um_idi.o drivers/isdn/hardware/eicon/dqueue.o

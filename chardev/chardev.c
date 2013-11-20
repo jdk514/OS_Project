@@ -48,6 +48,12 @@ static int device_release(struct inode *inode, struct file *file)
 	return 0;
 }
 
+void kernel_device_write(int fd){
+	//sprintf - push int into char[]
+	sprintf(msg, "%d", fd);
+	printk("We were able to write %s to the chardev\n", msg);
+}
+
 /* Called when a process writes to dev file: echo "hi" > /dev/hello */
 static ssize_t device_write(struct file *filp, const char *buff,
 			    size_t len, loff_t * off)

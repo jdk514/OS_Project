@@ -1,1 +1,0 @@
-cmd_sound/pci/mixart/snd-mixart.o := ld -m elf_i386 -m elf_i386  -r -o sound/pci/mixart/snd-mixart.o sound/pci/mixart/mixart.o sound/pci/mixart/mixart_core.o sound/pci/mixart/mixart_hwdep.o sound/pci/mixart/mixart_mixer.o

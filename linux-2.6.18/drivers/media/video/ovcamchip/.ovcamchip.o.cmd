@@ -1,1 +1,0 @@
-cmd_drivers/media/video/ovcamchip/ovcamchip.o := ld -m elf_i386 -m elf_i386  -r -o drivers/media/video/ovcamchip/ovcamchip.o drivers/media/video/ovcamchip/ovcamchip_core.o drivers/media/video/ovcamchip/ov6x20.o drivers/media/video/ovcamchip/ov6x30.o drivers/media/video/ovcamchip/ov7x10.o drivers/media/video/ovcamchip/ov7x20.o drivers/media/video/ovcamchip/ov76be.o

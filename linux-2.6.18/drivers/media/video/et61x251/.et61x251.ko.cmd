@@ -1,1 +1,0 @@
-cmd_drivers/media/video/et61x251/et61x251.ko := ld -m elf_i386 -m elf_i386 -r -o drivers/media/video/et61x251/et61x251.ko drivers/media/video/et61x251/et61x251.o drivers/media/video/et61x251/et61x251.mod.o

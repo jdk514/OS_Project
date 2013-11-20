@@ -1,1 +1,0 @@
-cmd_drivers/media/video/usbvideo/ultracam.ko := ld -m elf_i386 -m elf_i386 -r -o drivers/media/video/usbvideo/ultracam.ko drivers/media/video/usbvideo/ultracam.o drivers/media/video/usbvideo/ultracam.mod.o

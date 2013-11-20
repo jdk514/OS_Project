@@ -1,1 +1,0 @@
-cmd_drivers/media/video/usbvideo/konicawc.ko := ld -m elf_i386 -m elf_i386 -r -o drivers/media/video/usbvideo/konicawc.ko drivers/media/video/usbvideo/konicawc.o drivers/media/video/usbvideo/konicawc.mod.o

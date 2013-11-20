@@ -1,1 +1,0 @@
-cmd_drivers/isdn/gigaset/gigaset.o := ld -m elf_i386 -m elf_i386  -r -o drivers/isdn/gigaset/gigaset.o drivers/isdn/gigaset/common.o drivers/isdn/gigaset/interface.o drivers/isdn/gigaset/proc.o drivers/isdn/gigaset/ev-layer.o drivers/isdn/gigaset/i4l.o

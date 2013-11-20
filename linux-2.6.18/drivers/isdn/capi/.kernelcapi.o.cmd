@@ -1,1 +1,0 @@
-cmd_drivers/isdn/capi/kernelcapi.o := ld -m elf_i386 -m elf_i386  -r -o drivers/isdn/capi/kernelcapi.o drivers/isdn/capi/kcapi.o drivers/isdn/capi/capiutil.o drivers/isdn/capi/capilib.o drivers/isdn/capi/kcapi_proc.o

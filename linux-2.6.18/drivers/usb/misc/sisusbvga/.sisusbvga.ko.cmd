@@ -1,1 +1,0 @@
-cmd_drivers/usb/misc/sisusbvga/sisusbvga.ko := ld -m elf_i386 -m elf_i386 -r -o drivers/usb/misc/sisusbvga/sisusbvga.ko drivers/usb/misc/sisusbvga/sisusbvga.o drivers/usb/misc/sisusbvga/sisusbvga.mod.o

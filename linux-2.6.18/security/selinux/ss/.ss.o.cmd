@@ -1,1 +1,0 @@
-cmd_security/selinux/ss/ss.o := ld -m elf_i386 -m elf_i386  -r -o security/selinux/ss/ss.o security/selinux/ss/ebitmap.o security/selinux/ss/hashtab.o security/selinux/ss/symtab.o security/selinux/ss/sidtab.o security/selinux/ss/avtab.o security/selinux/ss/policydb.o security/selinux/ss/services.o security/selinux/ss/conditional.o security/selinux/ss/mls.o

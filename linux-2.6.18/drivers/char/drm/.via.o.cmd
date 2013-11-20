@@ -1,1 +1,0 @@
-cmd_drivers/char/drm/via.o := ld -m elf_i386 -m elf_i386  -r -o drivers/char/drm/via.o drivers/char/drm/via_irq.o drivers/char/drm/via_drv.o drivers/char/drm/via_ds.o drivers/char/drm/via_map.o drivers/char/drm/via_mm.o drivers/char/drm/via_dma.o drivers/char/drm/via_verifier.o drivers/char/drm/via_video.o drivers/char/drm/via_dmablit.o

@@ -1,1 +1,0 @@
-cmd_drivers/net/wireless/hostap/hostap_plx.ko := ld -m elf_i386 -m elf_i386 -r -o drivers/net/wireless/hostap/hostap_plx.ko drivers/net/wireless/hostap/hostap_plx.o drivers/net/wireless/hostap/hostap_plx.mod.o
