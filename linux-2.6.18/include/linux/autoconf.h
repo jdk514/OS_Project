@@ -1,7 +1,7 @@
 /*
  * Automatically generated C config: don't edit
  * Linux kernel version: 2.6.18OS_Project_Joel-Ross
- * Thu Nov 21 21:53:36 2013
+ * Fri Nov 22 14:38:43 2013
  */
 #define AUTOCONF_INCLUDED
 #define CONFIG_USB_SISUSBVGA_MODULE 1
@@ -1462,7 +1462,7 @@
 #define CONFIG_E100_MODULE 1
 #define CONFIG_IP_DCCP_TFRC_LIB_MODULE 1
 #define CONFIG_IP_NF_TARGET_NETMAP_MODULE 1
-#define CONFIG_UNAME_RELEASE "2.6.18OS_Project_Joel-Ross"
+#define CONFIG_UNAME_RELEASE "2.6.18-8.1.10.el5"
 #define CONFIG_UDF_FS_MODULE 1
 #define CONFIG_SCTP_HMAC_MD5 1
 #define CONFIG_IP_NF_SIP_MODULE 1

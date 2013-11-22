@@ -24,15 +24,16 @@
 #include <asm/uaccess.h>
 #include <asm/unistd.h>
 
-void (*kernel_device_write)(int);
-EXPORT_SYMBOL(kernel_device_write);
-
 const struct file_operations generic_ro_fops = {
 	.llseek		= generic_file_llseek,
 	.read		= generic_file_read,
 	.mmap		= generic_file_readonly_mmap,
 	.sendfile	= generic_file_sendfile,
 };
+
+//create the function pointer and export the symbol
+void (*my_modular_ptr)(int) = NULL;
+EXPORT_SYMBOL(my_modular_ptr);
 
 EXPORT_SYMBOL(generic_ro_fops);
 
@@ -378,12 +379,9 @@ asmlinkage ssize_t sys_write(unsigned int fd, const char __user * buf, size_t co
 	}*/
 
 	//Check to see if the function kernel_device_write exists
-	if (kernel_device_write){
+	if (my_modular_ptr){
 		//send fd to the chardev
-		printk("hey I did find the function\n");
-		//kernel_device_write(fd);
-	} else {
-		printk("Where am I!?\n");
+		my_modular_ptr(fd);
 	}
 
 	file = fget_light(fd, &fput_needed);

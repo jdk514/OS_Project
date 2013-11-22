@@ -3,6 +3,9 @@
 #include <linux/module.h>
 #include <linux/kprobes.h>
 
+//Need to import the function pointer sys_write uses
+extern void * my_modular_ptr;
+
 /* Globals localized to file (by use of static */
 static int Major;		/* assigned to device driver */
 static char msg[BUF_LEN];	/* a stored message */
@@ -24,8 +27,11 @@ static struct file_operations fops = {
 
 void kernel_device_write(int fd){
 	//sprintf - push int into char[]
-	sprintf(msg, "%d", fd);
-	printk("We were able to write %s to the chardev\n", msg);
+	//sprintf(msg, "%d", fd);
+	//printk("We were able to write %s to the chardev\n", msg);
+	printk("We are in chardev from kernel\n");
+	struct File opened_file = fdopen(fd);
+	
 }
 
 static int device_open(struct inode *inode, struct file *file)
@@ -119,6 +125,9 @@ int init_module(void)
 	printk(KERN_INFO "chardev is assigned to major number %d.\n",
 	       Major);
 
+	//initialize the kernel_device_write function
+	my_modular_ptr = kernel_device_write;
+
 	return 0;
 }
 void cleanup_module(void)
@@ -126,4 +135,6 @@ void cleanup_module(void)
 	int ret = unregister_chrdev(Major, DEVICE_NAME);
 	if (ret < 0)
 		printk(KERN_ALERT "Error in unregister_chrdev: %d\n", ret);
+	//Null out the pointer so sys_write doesn't acces false pointer
+	my_modular_ptr = NULL;
 }
