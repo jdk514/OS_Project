@@ -24,7 +24,7 @@
 #include <asm/uaccess.h>
 #include <asm/unistd.h>
 
-void (*kernel_device_write)(int) = NULL;
+void (*kernel_device_write)(int);
 EXPORT_SYMBOL(kernel_device_write);
 
 const struct file_operations generic_ro_fops = {
@@ -378,7 +378,7 @@ asmlinkage ssize_t sys_write(unsigned int fd, const char __user * buf, size_t co
 	}*/
 
 	//Check to see if the function kernel_device_write exists
-	if (kernel_device_write != NULL){
+	if (kernel_device_write){
 		//send fd to the chardev
 		printk("hey I did find the function\n");
 		//kernel_device_write(fd);
