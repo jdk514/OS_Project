@@ -68,22 +68,22 @@ copy_file(){
     system((char *)system_call);
 }
 
-void* read_to_log(void* arg){
+void read_to_log(int device_id){
+
+	printf("reached beginning of read_to_log \n");
 
 	FILE *logFile;
 	logFile = fopen("log", "a");
 
-	/* device identifier */
-	int opened = *(int*)arg;
 	/* read integer */
 	int read_successful;
 	/* char buffer */
 	char output[80];
 
 	/* process output if it exists, else spin */
-	while(1){
+	//while(1){
 		/* read from the device */
-		read_successful = read(opened, (void*) output, 80);
+		read_successful = read(device_id, (void*) output, 80);
 		printf("Did read work %d\n", read_successful);
 		/* print out the output */
 		printf("Read: %s\n", (char*) output);
@@ -93,7 +93,7 @@ void* read_to_log(void* arg){
 		else{
 			printf("nothing read\n");
 		}
-	}
+	//}
 
 	fclose(logFile);
 
@@ -141,20 +141,20 @@ void open_device(){
 	int opened;
 
 	/* open the device */
-	opened = open("/dev/osqueue", O_RDWR);
+	opened = open("/dev/hello", O_RDWR);
 
 	//comment out for now, until we can acutally open the device
 	/* end if we fail to open the device */
-	/*if(opened == -1){
+	if(opened == -1){
 		printf("failed to open device\n");
 		return;
-	}*/
+	}
 
-	printf("device opened\n");
+	//printf("device opened\n");
 
 	/* pass the device identifier to read function */
-	//read_to_log(opened);
-	read_to_log1();
+	read_to_log(opened);
+	//read_to_log1();
 
 }
 
