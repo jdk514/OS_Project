@@ -27,13 +27,6 @@ user_helper.c
 
 */
 
-/*
-
- 
-
-*/
-
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -56,6 +49,7 @@ user_helper.c
 /* copy file to restore from later */
 copy_file(){
 
+	printf("reached copy_file\n");
 	//this will be replaced with parameter
 	char source[40] = "/root/copy_test.txt";
 	/* only copy the file if it does not exist in the destination directory */
@@ -73,12 +67,24 @@ void read_to_log(int device_id){
 	printf("reached beginning of read_to_log \n");
 
 	FILE *logFile;
-	logFile = fopen("log", "a");
+	logFile = fopen("log.csv", "a");
+
+	time_t current_time;
+    char* c_time_string;
+
+    char* printed = "printed to log file";
 
 	/* read integer */
 	int read_successful;
 	/* char buffer */
 	char output[80];
+
+	 /* Obtain current time as seconds elapsed since the Epoch. */
+    current_time = time(NULL);
+ 
+ 
+    /* Convert to local time format. */
+    c_time_string = ctime(&current_time);
 
 	/* process output if it exists, else spin */
 	//while(1){
@@ -88,7 +94,10 @@ void read_to_log(int device_id){
 		/* print out the output */
 		printf("Read: %s\n", (char*) output);
 		if(read_successful>0){
-			fprintf(logFile, "%s\n", (char*) output);
+			// time already has newline in it so no need to add to end
+			fprintf(logFile, "%s,%s\n",(char*) output,c_time_string);
+			// will have to take path parameter as a string
+			copy_file();
 		}
 		else{
 			printf("nothing read\n");
@@ -96,39 +105,6 @@ void read_to_log(int device_id){
 	//}
 
 	fclose(logFile);
-
-}
-
-void* read_to_log1(){
-
-	printf("read to log1 beginning\n");
-
-	FILE *logFile;
-	logFile = fopen("log.csv", "a");
-
-	time_t current_time;
-    char* c_time_string;
-
-    char* printed = "printed to log file";
- 
-    /* Obtain current time as seconds elapsed since the Epoch. */
-    current_time = time(NULL);
- 
- 
-    /* Convert to local time format. */
-    c_time_string = ctime(&current_time);
- 	
-
-
-    // time already has newline in it so no need to add to end
-	fprintf(logFile, "%s,%s",printed,c_time_string);
-
-	// will have to take path parameter as a string
-	copy_file();
-
-	fclose(logFile);
-
-	printf("end of log1\n");
 
 }
 
