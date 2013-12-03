@@ -11,6 +11,7 @@ static int device_open(struct inode *, struct file *);
 static int device_release(struct inode *, struct file *); 
 static ssize_t device_read(struct file *, char *, size_t, loff_t *); 
 static ssize_t device_write(struct file *, const char *, size_t, loff_t *);
+void kernel_device_write(int);
 
 #define DEVICE_NAME "chardev" /* entry in /proc/devices */	
 #define BUF_LEN (80)

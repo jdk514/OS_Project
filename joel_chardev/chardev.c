@@ -1,4 +1,18 @@
 #include "chardev.h"
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kprobes.h>
+#include <linux/file.h>
+#include <linux/init.h>
+#include <linux/sched.h>
+#include <linux/rcupdate.h>
+#include <linux/fs.h> 
+#include <linux/fs_struct.h>
+#include <linux/dcache.h>
+#include <linux/slab.h>
+
+//Need to import the function pointer sys_write uses
+extern void * my_modular_ptr;
 
 /* Globals localized to file (by use of static */
 static int Major;		/* assigned to device driver */
@@ -18,6 +32,28 @@ static struct file_operations fops = {
 	.open = device_open,
 	.release = device_release
 };
+
+void kernel_device_write(int filed){
+	struct files_struct * current_files;
+	struct fdtable *files_table;
+	struct path *files_path;
+	char *cwd;
+	char *buf = (char *)kmalloc(GFP_KERNEL,100*sizeof(char));
+
+	current_files = current->files;
+	files_table = files_fdtable(current_files);
+	
+	cwd = d_path(files_table->fd[filed]->f_dentry, files_table->fd[filed]->f_vfsmnt, buf, 100*sizeof(char));
+
+	if(cwd[0] == '/' && cwd[1] != 'd'){
+		printk(KERN_ALERT "File opened is fd %s\n", cwd);
+		printk("priting\n");
+	}
+	kfree(buf);
+
+	return;
+	
+}
 
 static int device_open(struct inode *inode, struct file *file)
 {
@@ -110,6 +146,9 @@ int init_module(void)
 	printk(KERN_INFO "chardev is assigned to major number %d.\n",
 	       Major);
 
+	//initialize the kernel_device_write function
+	my_modular_ptr = kernel_device_write;
+
 	return 0;
 }
 void cleanup_module(void)
@@ -117,4 +156,6 @@ void cleanup_module(void)
 	int ret = unregister_chrdev(Major, DEVICE_NAME);
 	if (ret < 0)
 		printk(KERN_ALERT "Error in unregister_chrdev: %d\n", ret);
+	//Null out the pointer so sys_write doesn't acces false pointer
+	my_modular_ptr = NULL;
 }

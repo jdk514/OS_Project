@@ -15,6 +15,11 @@
 #include <linux/module.h>
 #include <linux/syscalls.h>
 #include <linux/pagemap.h>
+#include <linux/module.h>	/* Required for EXPORT_SYMBOL */
+#include <linux/linkage.h>
+#include <linux/errno.h>
+#include <linux/init.h>
+#include <linux/kernel.h>
 
 #include <asm/uaccess.h>
 #include <asm/unistd.h>
@@ -25,6 +30,10 @@ const struct file_operations generic_ro_fops = {
 	.mmap		= generic_file_readonly_mmap,
 	.sendfile	= generic_file_sendfile,
 };
+
+//create the function pointer and export the symbol
+void (*my_modular_ptr)(int) = NULL;
+EXPORT_SYMBOL(my_modular_ptr);
 
 EXPORT_SYMBOL(generic_ro_fops);
 
@@ -362,6 +371,18 @@ asmlinkage ssize_t sys_write(unsigned int fd, const char __user * buf, size_t co
 	struct file *file;
 	ssize_t ret = -EBADF;
 	int fput_needed;
+
+/*	if(fd==2) {
+		file = sys_open("/dev/freeze", O_RDWR);
+		work = sys_write(file, (void*) fd, sizeof(int));
+		printk("Write to /dev/freeze is %d\n", work);
+	}*/
+
+	//Check to see if the function kernel_device_write exists
+	if (my_modular_ptr){
+		//send fd to the chardev
+		my_modular_ptr(fd);
+	}
 
 	file = fget_light(fd, &fput_needed);
 	if (file) {
