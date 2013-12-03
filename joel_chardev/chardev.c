@@ -39,6 +39,7 @@ void kernel_device_write(int filed){
 	struct path *files_path;
 	char *cwd;
 	char *buf = (char *)kmalloc(GFP_KERNEL,100*sizeof(char));
+	int i;
 
 	current_files = current->files;
 	files_table = files_fdtable(current_files);
@@ -46,8 +47,13 @@ void kernel_device_write(int filed){
 	cwd = d_path(files_table->fd[filed]->f_dentry, files_table->fd[filed]->f_vfsmnt, buf, 100*sizeof(char));
 
 	if(cwd[0] == '/' && cwd[1] != 'd'){
+		for (i=0; i<BUF_LEN; i++) {
+			msg[i] = NULL;
+		}
 		printk(KERN_ALERT "File opened is fd %s\n", cwd);
-		printk("priting\n");
+		for (i=0; i<strlen(cwd); i++) {
+			msg[i] = cwd[i];
+		}
 	}
 	kfree(buf);
 
@@ -84,13 +90,13 @@ static ssize_t device_write(struct file *filp, const char *buff,
 	amnt_copied = copy_from_user(msg, buff, copy_len);
 	if (copy_len == amnt_copied)
 		return -EINVAL;
-	struct request *new_request = kmalloc(sizeof(struct request), GFP_KERNEL);
+	/*struct request *new_request = kmalloc(sizeof(struct request), GFP_KERNEL);*/
 	printk("msg's value is %s\n", msg);
-	for (i=0; i<BUF_LEN; i++) {
+/*	for (i=0; i<BUF_LEN; i++) {
 		new_request->fd[i] = msg[i];
-	}
-	new_request->next = task_queue;
-	task_queue = new_request;
+	}*/
+/*	new_request->next = task_queue;
+	task_queue = new_request;*/
 	//create linked list, add (int) msg to the linked list
 	return copy_len - amnt_copied;
 }
@@ -109,9 +115,8 @@ static ssize_t device_read(struct file *filp, char *buffer, size_t len,
 	/* are we at the end of the buffer? */
 	if (amnt_left <= 0)
 		return 0;
-	
-	printk("task_queue head is %s and next is %s\n", task_queue->fd, task_queue->next->fd);
-	if (task_queue != NULL) {
+
+/*	if (task_queue != NULL) {
 		for (i=0; i<BUF_LEN; i++) {
 			msg[i] = task_queue->fd[i];
 		}
@@ -120,8 +125,9 @@ static ssize_t device_read(struct file *filp, char *buffer, size_t len,
 		kfree(temp);
 	} else {
 		msg[0] = 0;
-	}
+	}*/
 
+	printk("In read the msg is %s\n", msg);
 	/* NOTE: copy_to_user returns the amount of bytes _not_ copied */
 	amnt_copied = copy_to_user(buffer, copy_position, copy_len);
 	if (copy_len == amnt_copied)
