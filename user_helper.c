@@ -47,15 +47,18 @@ user_helper.c
 //to avoid recursion
 
 /* copy file to restore from later */
-copy_file(){
+copy_file(char* source){
 
+	printf("The path is %s\n", source);
 	printf("reached copy_file\n");
-	//this will be replaced with parameter
-	char source[40] = "/root/copy_test.txt";
 	/* only copy the file if it does not exist in the destination directory */
 	//system n | cp source destination
-	char system_call[30] = "n | cp -i ";
-	char destination[40] = " /root/OS_Project/restore";
+
+	//Check for /root/OS_Project/restore if does not exist create directory
+
+	char system_call[120] = "n | cp -i "; //10 chars
+	//Need to alter if we are going to keep directory structure
+	char destination[26] = " /root/OS_Project/restore"; //25 chars - need to add 80 for directory hierarchy
     strcat(system_call,source);
     strcat(system_call,destination);
     printf("%s\n",system_call);
@@ -64,21 +67,15 @@ copy_file(){
 
 void read_to_log(int device_id){
 
-	printf("reached beginning of read_to_log \n");
-
 	FILE *logFile;
 	logFile = fopen("log.csv", "a");
 
 	time_t current_time;
     char* c_time_string;
-
-    char* printed = "printed to log file";
-
 	/* read integer */
 	int read_successful;
 	/* char buffer */
-	char output[80];
-
+	char* output = (char *)malloc(80*sizeof(char));
 	 /* Obtain current time as seconds elapsed since the Epoch. */
     current_time = time(NULL);
  
@@ -95,15 +92,15 @@ void read_to_log(int device_id){
 		printf("Read: %s\n", (char*) output);
 		if(read_successful>0){
 			// time already has newline in it so no need to add to end
-			fprintf(logFile, "%s,%s\n",(char*) output,c_time_string);
+			fprintf(logFile, "%s, %s\n",(char*) output,c_time_string);
 			// will have to take path parameter as a string
-			copy_file();
+			copy_file(output);
 		}
 		else{
 			printf("nothing read\n");
 		}
 	//}
-
+	free(output);
 	fclose(logFile);
 
 }
