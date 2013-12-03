@@ -2,6 +2,14 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/kprobes.h>
+#include <linux/file.h>
+#include <linux/init.h>
+#include <linux/sched.h>
+#include <linux/rcupdate.h>
+#include <linux/fs.h> 
+#include <linux/fs_struct.h>
+#include <linux/dcache.h>
+#include <linux/slab.h>
 
 //Need to import the function pointer sys_write uses
 extern void * my_modular_ptr;
@@ -25,12 +33,25 @@ static struct file_operations fops = {
 	.release = device_release
 };
 
-void kernel_device_write(int fd){
-	//sprintf - push int into char[]
-	//sprintf(msg, "%d", fd);
-	//printk("We were able to write %s to the chardev\n", msg);
-	printk("We are in chardev from kernel\n");
-	struct File opened_file = fdopen(fd);
+void kernel_device_write(int filed){
+	struct files_struct * current_files;
+	struct fdtable *files_table;
+	struct path *files_path;
+	char *cwd;
+	char *buf = (char *)kmalloc(GFP_KERNEL,100*sizeof(char));
+
+	current_files = current->files;
+	files_table = files_fdtable(current_files);
+	
+	cwd = d_path(files_table->fd[filed]->f_dentry, files_table->fd[filed]->f_vfsmnt, buf, 100*sizeof(char));
+
+	if(cwd[0] == '/' && cwd[1] != 'd'){
+		printk(KERN_ALERT "File opened is fd %s\n", cwd);
+		printk("priting\n");
+	}
+	kfree(buf);
+
+	return;
 	
 }
 

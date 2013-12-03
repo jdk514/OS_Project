@@ -1,7 +1,7 @@
 /*
  * Automatically generated C config: don't edit
  * Linux kernel version: 2.6.18OS_Project_Joel-Ross
- * Fri Nov 22 14:38:43 2013
+ * Fri Nov 22 23:32:56 2013
  */
 #define AUTOCONF_INCLUDED
 #define CONFIG_USB_SISUSBVGA_MODULE 1
