@@ -10,6 +10,8 @@
 #include <linux/fs_struct.h>
 #include <linux/dcache.h>
 #include <linux/slab.h>
+#include <linux/mutex.h>
+#include <linux/wait.h>
 
 //Need to import the function pointer sys_write uses
 extern void * my_modular_ptr;
@@ -19,6 +21,8 @@ static int Major;		/* assigned to device driver */
 static char msg[BUF_LEN];	/* a stored message */
 
 static struct request *task_queue = NULL;		//head of linked_list for mode 5 & 6
+static struct mutex lock;
+//struct wait_queue_head_t chardev;
 
 //struct used to send requests to threads
 static struct request {
@@ -36,17 +40,19 @@ static struct file_operations fops = {
 void kernel_device_write(int filed){
 	struct files_struct * current_files;
 	struct fdtable *files_table;
-	struct path *files_path;
 	char *cwd;
 	char *buf = (char *)kmalloc(GFP_KERNEL,100*sizeof(char));
 	int i;
 
 	current_files = current->files;
 	files_table = files_fdtable(current_files);
+	mutex_init(&lock);
+	//init_waitqueue_head(chardev);
 	
 	cwd = d_path(files_table->fd[filed]->f_dentry, files_table->fd[filed]->f_vfsmnt, buf, 100*sizeof(char));
 
 	if(cwd[0] == '/' && cwd[1] != 'd'){
+		mutex_lock(&lock);
 		for (i=0; i<BUF_LEN; i++) {
 			msg[i] = NULL;
 		}
@@ -54,6 +60,9 @@ void kernel_device_write(int filed){
 		for (i=0; i<strlen(cwd); i++) {
 			msg[i] = cwd[i];
 		}
+		//wake up user_level
+		//wait_event(chardev, 1);
+		mutex_unlock(&lock);
 	}
 	kfree(buf);
 
