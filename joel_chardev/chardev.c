@@ -22,7 +22,8 @@ static char msg[BUF_LEN];	/* a stored message */
 
 static struct request *task_queue = NULL;		//head of linked_list for mode 5 & 6
 static struct mutex lock;
-//struct wait_queue_head_t chardev;
+wait_queue_head_t chardev_wait;
+//wait_queue_head_t user_reader;
 
 //struct used to send requests to threads
 static struct request {
@@ -47,11 +48,11 @@ void kernel_device_write(int filed){
 	current_files = current->files;
 	files_table = files_fdtable(current_files);
 	mutex_init(&lock);
-	//init_waitqueue_head(chardev);
+	init_waitqueue_head(&chardev_wait);
 	
 	cwd = d_path(files_table->fd[filed]->f_dentry, files_table->fd[filed]->f_vfsmnt, buf, 100*sizeof(char));
 
-	if(cwd[0] == '/' && cwd[1] != 'd'){
+	if (cwd[0] == '/' && cwd[1] == 'f' && cwd[2] == 'r' && cwd[3] == 'e' && cwd[4] == 'e' && cwd[5] == 'z' && cwd[6] == 'e' && cwd[7] == '/') {
 		mutex_lock(&lock);
 		for (i=0; i<BUF_LEN; i++) {
 			msg[i] = NULL;
@@ -60,8 +61,8 @@ void kernel_device_write(int filed){
 		for (i=0; i<strlen(cwd); i++) {
 			msg[i] = cwd[i];
 		}
-		//wake up user_level
-		//wait_event(chardev, 1);
+		//wake_up(&user_reader);
+		wait_event(chardev_wait, 1);
 		mutex_unlock(&lock);
 	}
 	kfree(buf);
@@ -144,6 +145,8 @@ static ssize_t device_read(struct file *filp, char *buffer, size_t len,
 
 	/* adjust the offset for this process */
 	*offset += copy_len;
+
+	wake_up(&chardev_wait);
 
 	return copy_len - amnt_copied;
 }

@@ -138,5 +138,3 @@ int main(){
 	open_device();
 	printf("end of main\n");
 }
-
-        
