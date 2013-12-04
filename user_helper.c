@@ -37,6 +37,9 @@ user_helper.c
 #include <sys/stat.h>
 #include <fcntl.h>
 
+/* include to read args from commnad line */
+#include <unistd.h>
+
 /* restore files */
 
 //iterate through log
@@ -108,7 +111,7 @@ void read_to_log(int device_id){
 
 void open_device(){
 
-	printf("beginning of open_device\n");
+	//printf("beginning of open_device\n");
 
 	/* device identifier */
 	int opened;
@@ -116,25 +119,43 @@ void open_device(){
 	/* open the device */
 	opened = open("/dev/hello", O_RDWR);
 
-	//comment out for now, until we can acutally open the device
 	/* end if we fail to open the device */
 	if(opened == -1){
 		printf("failed to open device\n");
 		return;
 	}
 
-	//printf("device opened\n");
-
 	/* pass the device identifier to read function */
 	read_to_log(opened);
-	//read_to_log1();
 
 }
 
 
-int main(){
+int main(int argc, char *argv[]){
+
+	/* Error if more than two command line arguments */
+	if(argc!=2){
+		printf("Please enter freeze or restore as a sole argument\n");
+		return;
+	}
 
 	printf("beginning of main\n");
-	open_device();
+	/* string for command */
+	char* command = (char *)malloc(8*sizeof(char));
+	/* set command equal to command line argument */
+	strcat(command,argv[1]);
+	//printf("%s\n",command);
+	int restore = strcmp("restore",command);
+	int freeze = strcmp("freeze",command);
+	if(restore==0){
+		printf("restore\n");
+	}
+	else if(freeze==0){
+		printf("freeze\n");
+		open_device();
+	}
+	else{
+		printf("Please enter freeze or restore as a sole argument\n");
+	}	
 	printf("end of main\n");
 }
