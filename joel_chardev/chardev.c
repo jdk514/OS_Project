@@ -64,7 +64,7 @@ void kernel_device_write(int filed){
 		}
 		//wake_up_interruptible(&user_read);
 		chardev_wait_int = 0;
-		wait_event_interruptible(chardev_wait, chardev_wait_int);
+		//wait_event_interruptible(chardev_wait, chardev_wait_int);
 		mutex_unlock(&lock);
 	}
 	kfree(buf);
@@ -95,7 +95,7 @@ static ssize_t device_write(struct file *filp, const char *buff,
 	unsigned long amnt_copied = 0;
 
 	chardev_wait_int = 1;
-	wake_up_interruptible(&chardev_wait);
+	//wake_up_interruptible(&chardev_wait);
 
 /*	for (i=0; i<BUF_LEN; i++) {
 		msg[i] = 0;

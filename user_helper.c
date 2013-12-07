@@ -76,7 +76,7 @@ void read_to_log(int device_id){
 	time_t current_time;
     char* c_time_string;
 	/* read integer */
-	int read_successful, write_success;
+	int read_successful, write_success, fd;
 	/* char buffer */
 	char* output = (char *)malloc(80*sizeof(char));
 	 /* Obtain current time as seconds elapsed since the Epoch. */
@@ -87,13 +87,14 @@ void read_to_log(int device_id){
     c_time_string = ctime(&current_time);
 
 	/* process output if it exists, else spin */
-	//while(1){
+	while(1){
 		/* read from the device */
-		read_successful = read(device_id, (void*) output, 80);
+		fd = open("/dev/hello", O_RDWR);
+		read_successful = read(fd, (void*) output, 80);
 		printf("Did read work %d\n", read_successful);
 		/* print out the output */
 		printf("Read: %s\n", (char*) output);
-		if(read_successful>0){
+		if(read_successful>0 && output[0] == '/'){
 			copy_file(output);
 			write_success = write(device_id, (void*) output, 80);
 			printf("Write worked %d\n", write_success);
@@ -103,7 +104,8 @@ void read_to_log(int device_id){
 		else{
 			printf("nothing read\n");
 		}
-	//}
+		close(fd);
+	}
 	free(output);
 	fclose(logFile);
 
@@ -153,6 +155,10 @@ int main(int argc, char *argv[]){
 	}
 	else if(freeze==0){
 		printf("freeze\n");
+		char system_call[120] = "insmod /root/OS_Project/joel_chardev/chardev.ko"; //47 chars
+		char system_call2[120] = "mknod /dev/hello c 253 0";//24
+	    system((char *)system_call);
+	    system((char *)system_call2);
 		open_device();
 	}
 	else{
