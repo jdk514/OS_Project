@@ -1,0 +1,1 @@
+This is a backup of Ross's user_helper in case of merge failure.
