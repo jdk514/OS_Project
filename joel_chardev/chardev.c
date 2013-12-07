@@ -22,8 +22,10 @@ static char msg[BUF_LEN];	/* a stored message */
 
 static struct request *task_queue = NULL;		//head of linked_list for mode 5 & 6
 static struct mutex lock;
+static int chardev_wait_int;
+static int user_read_int;
 wait_queue_head_t chardev_wait;
-//wait_queue_head_t user_reader;
+wait_queue_head_t user_read;
 
 //struct used to send requests to threads
 static struct request {
@@ -48,7 +50,6 @@ void kernel_device_write(int filed){
 	current_files = current->files;
 	files_table = files_fdtable(current_files);
 	mutex_init(&lock);
-	init_waitqueue_head(&chardev_wait);
 	
 	cwd = d_path(files_table->fd[filed]->f_dentry, files_table->fd[filed]->f_vfsmnt, buf, 100*sizeof(char));
 
@@ -61,8 +62,9 @@ void kernel_device_write(int filed){
 		for (i=0; i<strlen(cwd); i++) {
 			msg[i] = cwd[i];
 		}
-		//wake_up(&user_reader);
-		wait_event(chardev_wait, 1);
+		//wake_up_interruptible(&user_read);
+		chardev_wait_int = 0;
+		wait_event_interruptible(chardev_wait, chardev_wait_int);
 		mutex_unlock(&lock);
 	}
 	kfree(buf);
@@ -92,16 +94,19 @@ static ssize_t device_write(struct file *filp, const char *buff,
 	int copy_len = len > BUF_LEN ? BUF_LEN : len;
 	unsigned long amnt_copied = 0;
 
-	for (i=0; i<BUF_LEN; i++) {
+	chardev_wait_int = 1;
+	wake_up_interruptible(&chardev_wait);
+
+/*	for (i=0; i<BUF_LEN; i++) {
 		msg[i] = 0;
-	}
+	}*/
 
 	/* NOTE: copy_from_user returns the amount of bytes _not_ copied */
-	amnt_copied = copy_from_user(msg, buff, copy_len);
+/*	amnt_copied = copy_from_user(msg, buff, copy_len);
 	if (copy_len == amnt_copied)
-		return -EINVAL;
+		return -EINVAL;*/
 	/*struct request *new_request = kmalloc(sizeof(struct request), GFP_KERNEL);*/
-	printk("msg's value is %s\n", msg);
+	//printk("msg's value is %s\n", msg);
 /*	for (i=0; i<BUF_LEN; i++) {
 		new_request->fd[i] = msg[i];
 	}*/
@@ -121,6 +126,7 @@ static ssize_t device_read(struct file *filp, char *buffer, size_t len,
 	int copy_len = len > amnt_left ? amnt_left : len;
 	struct request *temp;
 
+	//wait_event_interruptible(user_read, flag != 'n');
 
 	/* are we at the end of the buffer? */
 	if (amnt_left <= 0)
@@ -146,8 +152,6 @@ static ssize_t device_read(struct file *filp, char *buffer, size_t len,
 	/* adjust the offset for this process */
 	*offset += copy_len;
 
-	wake_up(&chardev_wait);
-
 	return copy_len - amnt_copied;
 }
 
@@ -166,6 +170,8 @@ int init_module(void)
 
 	//initialize the kernel_device_write function
 	my_modular_ptr = kernel_device_write;
+	init_waitqueue_head(&chardev_wait);
+	init_waitqueue_head(&user_read);
 
 	return 0;
 }

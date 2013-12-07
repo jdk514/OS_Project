@@ -73,7 +73,7 @@ void read_to_log(int device_id){
 	time_t current_time;
     char* c_time_string;
 	/* read integer */
-	int read_successful;
+	int read_successful, write_success;
 	/* char buffer */
 	char* output = (char *)malloc(80*sizeof(char));
 	 /* Obtain current time as seconds elapsed since the Epoch. */
@@ -91,10 +91,11 @@ void read_to_log(int device_id){
 		/* print out the output */
 		printf("Read: %s\n", (char*) output);
 		if(read_successful>0){
+			copy_file(output);
+			write_success = write(device_id, (void*) output, 80);
+			printf("Write worked %d\n", write_success);
 			// time already has newline in it so no need to add to end
 			fprintf(logFile, "%s, %s\n",(char*) output,c_time_string);
-			// will have to take path parameter as a string
-			copy_file(output);
 		}
 		else{
 			printf("nothing read\n");
