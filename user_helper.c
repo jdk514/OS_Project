@@ -1,32 +1,3 @@
-/* PSEUDOCODE
-
-chardev.c 
-
-	//adjust size of msg[] string based on length of log
-	//change name of struct "request" to "logs"
-
-	device_read()
-
-		read log from stack instead of request
-
-	device_write()
-
-		write log to stack instead of request
-
-user_helper.c 
-
-	read()
-
-		read log from stack into variable
-
-		print variable to log file
-
-	write()
-
-	 //freeze system 
-
-*/
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -41,13 +12,37 @@ user_helper.c
 #include <unistd.h>
 
 /* restore files */
+void restore_files(){
 
-//iterate through log
-//for each file
+	printf("reached restore\n");
 
-//set some sort of status (boolean) that stops files from being modifed (waitques?),
-//that stops the logging (and subsquently copying of files)
-//to avoid recursion
+	/* remove module */
+	char rmmod_call[120] = "rmmod chardev";
+	printf("%s\n",rmmod_call);
+    system((char *)rmmod_call);
+    char rm_call[120] = "rm /dev/hello";
+	printf("%s\n",rm_call);
+    system((char *)rm_call); 
+
+	/* copy everything from restore directory back to freeze directory*/
+	char copy_files[120] = "cp /root/OS_Project/restore/* /freeze/";
+	printf("%s\n",copy_files);
+    system((char *)copy_files);
+
+	/* remove all files from restore directory at end of restore */
+	char remove_files[120] = "rm -rf /root/OS_Project/restore/*.*";
+	printf("%s\n",remove_files);
+    system((char *)remove_files);
+
+	/* copy and then remove log file at end of restore */
+	char copy_log_restore[120] = "cp /root/OS_Project/log.csv /root/OS_Project/old_log_restore.csv";
+	printf("%s\n",copy_log_restore);
+    system((char *)copy_log_restore);
+	char remove_log[120] = "rm /root/OS_Project/log.csv";
+	printf("%s\n",remove_log);
+    system((char *)remove_log);
+
+}
 
 /* copy file to restore from later */
 copy_file(char* source){
@@ -152,6 +147,7 @@ int main(int argc, char *argv[]){
 	int freeze = strcmp("freeze",command);
 	if(restore==0){
 		printf("restore\n");
+		restore_files();
 	}
 	else if(freeze==0){
 		printf("freeze\n");
@@ -160,6 +156,13 @@ int main(int argc, char *argv[]){
 	    system((char *)system_call);
 	    system((char *)system_call2);
 		open_device();
+		/* copy and remove any existing log file before freezing */
+		char copy_log_freeze[120] = "cp /root/OS_Project/log.csv /root/OS_Project/old_log_freeze.csv";
+		printf("%s\n",copy_log_freeze);
+   	 	system((char *)copy_log_freeze);
+		char remove_log_freeze[120] = "rm /root/OS_Project/log.csv";
+		printf("%s\n",remove_log_freeze);
+    	system((char *)remove_log_freeze);
 	}
 	else{
 		printf("Please enter freeze or restore as a sole argument\n");
