@@ -21,7 +21,7 @@ copy_file(char* source){
 
 	//Check for /root/OS_Project/restore if does not exist create directory
 
-	char system_call[120] = "n | cp -i "; //10 chars
+	char system_call[120] = "n | cp -i --parents "; //10 chars
 	//Need to alter if we are going to keep directory structure
 	char destination[26] = " /root/OS_Project/restore"; //25 chars - need to add 80 for directory hierarchy
     strcat(system_call,source);

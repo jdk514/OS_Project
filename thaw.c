@@ -28,7 +28,7 @@ void thaw(){
     system((char *)rm_call); 
 
 	/* remove all files from restore directory */
-	char remove_files[120] = "rm -rf /root/OS_Project/restore/*.*";
+	char remove_files[120] = "rm -rf /root/OS_Project/restore/*";
 	printf("%s\n",remove_files);
     system((char *)remove_files);
 

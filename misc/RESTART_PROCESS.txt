@@ -1,0 +1,2 @@
+To make the script run on startup do 'sh script-location' for 
+/etc/rc.local

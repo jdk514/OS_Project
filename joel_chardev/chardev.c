@@ -22,8 +22,7 @@ static char msg[BUF_LEN];	/* a stored message */
 
 static struct request *task_queue = NULL;		//head of linked_list for mode 5 & 6
 static struct mutex lock;
-static int chardev_wait_int;
-static int user_read_int;
+static int chardev_wait_int, user_read_int;
 wait_queue_head_t chardev_wait;
 wait_queue_head_t user_read;
 
@@ -64,7 +63,9 @@ void kernel_device_write(int filed){
 		}
 		//wake_up_interruptible(&user_read);
 		chardev_wait_int = 0;
-		//wait_event_interruptible(chardev_wait, chardev_wait_int);
+		user_read_int = 1;
+		wake_up_interruptible(&user_read);
+		wait_event_interruptible(chardev_wait, chardev_wait_int);
 		mutex_unlock(&lock);
 	}
 	kfree(buf);
@@ -95,7 +96,7 @@ static ssize_t device_write(struct file *filp, const char *buff,
 	unsigned long amnt_copied = 0;
 
 	chardev_wait_int = 1;
-	//wake_up_interruptible(&chardev_wait);
+	wake_up_interruptible(&chardev_wait);
 
 /*	for (i=0; i<BUF_LEN; i++) {
 		msg[i] = 0;
@@ -126,7 +127,8 @@ static ssize_t device_read(struct file *filp, char *buffer, size_t len,
 	int copy_len = len > amnt_left ? amnt_left : len;
 	struct request *temp;
 
-	//wait_event_interruptible(user_read, flag != 'n');
+	user_read_int = 0;
+	wait_event_interruptible(user_read, user_read_int);
 
 	/* are we at the end of the buffer? */
 	if (amnt_left <= 0)

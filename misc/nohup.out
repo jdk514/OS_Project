@@ -1,0 +1,17 @@
+ERROR: Module chardev does not exist in /proc/modules
+cp: cannot stat `/root/OS_Project/restore/*': No such file or directory
+cp: cannot stat `/root/OS_Project/log.csv': No such file or directory
+rm: cannot remove `/root/OS_Project/log.csv': No such file or directory
+reached restore
+rmmod chardev
+rm /dev/hello
+cp /root/OS_Project/restore/* /freeze/
+rm -rf /root/OS_Project/restore/*.*
+cp /root/OS_Project/log.csv /root/OS_Project/old_log_restore.csv
+rm /root/OS_Project/log.csv
+insmod: error inserting '/root/OS_Project/joel_chardev/chardev.ko': -1 Invalid module format
+cp: cannot stat `/root/OS_Project/log.csv': No such file or directory
+rm: cannot remove `/root/OS_Project/log.csv': No such file or directory
+cp /root/OS_Project/log.csv /root/OS_Project/old_log_freeze.csv
+rm /root/OS_Project/log.csv
+failed to open device

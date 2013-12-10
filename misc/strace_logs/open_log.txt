@@ -1,0 +1,40 @@
+execve("/usr/bin/open", ["open", "temp.txt"], [/* 22 vars */]) = 0
+brk(0)                                  = 0x83be000
+mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f8d000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+open("/etc/ld.so.cache", O_RDONLY)      = 3
+fstat64(3, {st_mode=S_IFREG|0644, st_size=41374, ...}) = 0
+mmap2(NULL, 41374, PROT_READ, MAP_PRIVATE, 3, 0) = 0xb7f82000
+close(3)                                = 0
+open("/lib/libc.so.6", O_RDONLY)        = 3
+read(3, "\177ELF\1\1\1\0\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0000_#J4"..., 512) = 512
+fstat64(3, {st_mode=S_IFREG|0755, st_size=1576952, ...}) = 0
+mmap2(0x4a220000, 1295780, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x4a220000
+mmap2(0x4a357000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x137) = 0x4a357000
+mmap2(0x4a35a000, 9636, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x4a35a000
+close(3)                                = 0
+mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7f81000
+set_thread_area({entry_number:-1 -> 6, base_addr:0xb7f816c0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0
+mprotect(0x4a357000, 8192, PROT_READ)   = 0
+mprotect(0x4a21c000, 4096, PROT_READ)   = 0
+munmap(0xb7f82000, 41374)               = 0
+open("/dev/tty", O_RDONLY)              = 3
+ioctl(3, KDGKBTYPE, 0xbf9e4b77)         = -1 EINVAL (Invalid argument)
+open("/dev/console", O_RDONLY)          = 4
+ioctl(4, KDGKBTYPE, 0xbf9e4b77)         = 0
+ioctl(4, VT_GETSTATE, 0xbf9e4bea)       = 0
+ioctl(4, VIDIOC_QUERYCAP or VT_OPENQRY, 0xbf9e4bf0) = 0
+open("/dev/tty8", O_RDWR)               = 5
+close(5)                                = 0
+access("/dev/tty8", R_OK|W_OK)          = 0
+geteuid32()                             = 0
+getuid32()                              = 0
+getgid32()                              = 0
+chown32("/dev/tty8", 0, 0)              = 0
+setuid32(0)                             = 0
+brk(0)                                  = 0x83be000
+brk(0x83df000)                          = 0x83df000
+clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb7f81708) = 21093
+--- SIGCHLD (Child exited) @ 0 (0) ---
+exit_group(0)                           = ?
+Process 21089 detached

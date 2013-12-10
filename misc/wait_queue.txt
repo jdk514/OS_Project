@@ -1,0 +1,15 @@
+Waitqueue
+
+/* create the wait queue*/
+wait_queue_head_t freeze_queue;
+
+/* initialize freeze_queue */
+init_waitqueue_head(freeze_queue);
+
+/* when function_x() is called that we need to put on freeze_queue */
+wait_event(freeze_queue, "condition");
+
+/* 
+ * condition were going to signal on will be one that tells us we've      
+ * successfuly copied the file for the freeze
+ */

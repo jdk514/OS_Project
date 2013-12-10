@@ -28,12 +28,13 @@ void restore_files(){
     system((char *)rm_call); 
 
 	/* copy everything from restore directory back to freeze directory*/
-	char copy_files[120] = "cp /root/OS_Project/restore/* /freeze/";
+	//char copy_files[120] = "cp /root/OS_Project/restore/* /freeze/";
+	char copy_files[120] = "cp -r /root/OS_Project/restore/freeze/* /freeze/";
 	printf("%s\n",copy_files);
     system((char *)copy_files);
 
 	/* remove all files from restore directory at end of restore */
-	char remove_files[120] = "rm -rf /root/OS_Project/restore/*.*";
+	char remove_files[120] = "rm -rf /root/OS_Project/restore/*";
 	printf("%s\n",remove_files);
     system((char *)remove_files);
 
