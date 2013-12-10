@@ -1,12 +1,15 @@
 Pre Demo
 - Reboot vm
-- Copy files from test_files to freeze directory
-- Open two terminals (/freeze , /OS_Project/restore)
+- Empty freeze director and copy files from test_files to freeze directory
+cd /freeze
+rm -rf *
+cp -r /root/OS_Project/test_files/*
+- Open another terminal to /OS_Project/restore
 Demo
 - Freeze (/root/OS_Project/freeze_system)
 - Modify test1.txt (nano test1.txt)
-- Modify /sub_dir/test1s.txt (nano /sub_dir/test1s.txt)
-- Show files in restore
+- Modify /sub_dir/test1s.txt (nano sub_dir/test1s.txt)
+- Show files in restore (cd /root/OS_Project/restore/freeze)
 - Restore (/root/OS_Project/restore_system)
 - Show file has been restored
 - Freeze (/root/OS_Project/freeze_system)
@@ -18,3 +21,5 @@ Demo
 - Modify test3.txt (nano test3.txt)
 - Modify /sub_dir/test3s.txt (nano /sub_dir/test3s.txt)
 - Reboot (sudo reboot)
+- Load our kernel
+- Show files

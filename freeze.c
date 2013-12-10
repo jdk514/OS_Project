@@ -14,8 +14,8 @@
 /* copy file to restore from later */
 copy_file(char* source){
 
-	printf("The path is %s\n", source);
-	printf("reached copy_file\n");
+	//printf("The path is %s\n", source);
+	//printf("reached copy_file\n");
 	/* only copy the file if it does not exist in the destination directory */
 	//system n | cp source destination
 
@@ -26,7 +26,7 @@ copy_file(char* source){
 	char destination[26] = " /root/OS_Project/restore"; //25 chars - need to add 80 for directory hierarchy
     strcat(system_call,source);
     strcat(system_call,destination);
-    printf("%s\n",system_call);
+    //printf("%s\n",system_call);
     system((char *)system_call);
 }
 
@@ -42,18 +42,18 @@ void read_to_log(int device_id){
 		/* read from the device */
 		fd = open("/dev/hello", O_RDWR);
 		read_successful = read(fd, (void*) output, 80);
-		printf("Did read work %d\n", read_successful);
+		//printf("Did read work %d\n", read_successful);
 		/* print out the output */
-		printf("Read: %s\n", (char*) output);
+		//printf("Read: %s\n", (char*) output);
 		if(read_successful>0 && output[0] == '/'){
 			copy_file(output);
 			write_success = write(device_id, (void*) output, 80);
-			printf("Write worked %d\n", write_success);
+			//printf("Write worked %d\n", write_success);
 			// time already has newline in it so no need to add to end
 			fprintf(logFile, "%s\n",(char*) output);
 		}
 		else{
-			printf("nothing read\n");
+			//printf("nothing read\n");
 		}
 		close(fd);
 	}
@@ -94,10 +94,10 @@ int main(){
 	system((char *)system_call2);
 	/* copy and remove any existing log file before freezing */
 	char copy_log_freeze[120] = "cp /root/OS_Project/log.csv /root/OS_Project/old_log_freeze.csv";
-	printf("%s\n",copy_log_freeze);
+	//printf("%s\n",copy_log_freeze);
    	system((char *)copy_log_freeze);
 	char remove_log_freeze[120] = "rm /root/OS_Project/log.csv";
-	printf("%s\n",remove_log_freeze);
+	//printf("%s\n",remove_log_freeze);
     system((char *)remove_log_freeze);
     /* open the device */
     open_device();
